@@ -1,6 +1,7 @@
 from selene.support.shared import browser
 from selene import have
 import os.path
+from model.dropdown import select_dropdown, select_by_typing
 
 
 def open_form():
@@ -53,18 +54,22 @@ def set_current_address(address):
     browser.element('#currentAddress').type(address)
 
 
-def set_state():
-    browser.element('#react-select-3-input').type('ncr').press_enter()
+def set_state_dropdown(state):
+    select_dropdown(browser.element('#state'), state)
 
 
-def set_city():
-    browser.element('#react-select-4-input').type('gurgaon').press_enter()
+def set_city_typing(city):
+    select_by_typing(browser.element('#react-select-4-input'), city)
 
 
 def submit_form():
     browser.element('#submit').click()
 
 
+def should_have_submitted(data):
+    rows = browser.element('.modal-content').all('tbody tr')
+    for row, value in data:
+        rows.element_by(have.text(row)).all('td')[1].should(have.exact_text(value))
 
 
 
