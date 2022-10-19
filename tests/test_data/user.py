@@ -9,7 +9,7 @@ class user:
     lastname: str = 'Sem'
     email: str = 'demotest@tete.com'
     phone: str = '9570000000'
-    birth_day: str = '5'
+    birth_day: str = '05'
     birth_month: str = 'November'
     birth_year: str = '1995'
     subject1: str = 'English'
